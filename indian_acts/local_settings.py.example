@@ -1,0 +1,5 @@
+SECRET_KEY = '1wf32foih5hekbe)9(tf!bk9e3qd@ck*wh3#owh$hdkod2ao9^'
+
+DEBUG = True
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
