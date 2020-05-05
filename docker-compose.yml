@@ -1,0 +1,16 @@
+version: "3.8"
+
+services: 
+    app:
+        # Set context to current directory
+        build:
+            context: .
+        # Map machine port to docker image port
+        ports:
+            - "8000:8000"
+        # Map code directory to sync changes without restarting docker
+        volumes:
+            - ./app:/app
+        # Command used to run application in docker container
+        command: >
+            sh -c "python manage.py runserver 0.0.0.0:8000"
