@@ -1,6 +1,7 @@
 FROM python:3.8-alpine
 LABEL maintainer="my68tron"
 
+# Creating project directory as we cannot work in root
 RUN mkdir /app
 
 # Current working directory
@@ -13,8 +14,8 @@ ENV PYTHONUNBUFFERED 1
 COPY ./requirements.txt /app/
 
 # --no-cahce-dir so that docker file should should not keep binaries
-# RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+# RUN pip install -r requirements.txt
 
 # Copy all the code files to the root
 COPY ./ /app
