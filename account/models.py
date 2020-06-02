@@ -7,7 +7,8 @@ class UserManager(BaseUserManager):
 
     def create_user(self, email, password=None, **extra_fields):
         '''Create and save a new user'''
-        user = self.model(email=email, **extra_fields)
+
+        user = self.model(email=self.normalize_email(email), **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
 
@@ -16,6 +17,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     '''Custom user model that supports email instead of username'''
+
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
@@ -23,7 +25,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
+    # Which field should be used as username for login
     USERNAME_FIELD = 'email'
 
     class Meta:
+        # To give custom name to the table in database
         db_table = 'users'
