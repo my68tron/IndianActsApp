@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'api',
+    'account',
 ]
 
 MIDDLEWARE = [
@@ -126,6 +128,8 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = MEDIA_DIR
+
+AUTH_USER_MODEL = 'account.User'
 
 # Import local settings from 'local_settings.py'
 try:
